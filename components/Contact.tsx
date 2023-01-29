@@ -18,8 +18,8 @@ type Props = {};
 function Contact({}: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    window.location.href =
-      "mailto:pierre.simond@edu.ece.fr?subject=${formData.sujet}&body=Bonjour je suis ${formData.prenom} ${formData.nom}.\n ${formData.message} (${formData.email})";
+    console.log(`${formData.nom}`);
+    window.location.href = `mailto:pierre.simond@edu.ece.fr?subject=${formData.sujet}&body=Bonjour je suis ${formData.prenom} ${formData.nom}.\n ${formData.message} (${formData.email})`;
   };
 
   return (
@@ -30,7 +30,7 @@ function Contact({}: Props) {
       className="h-screen flex flex-col relative text-left md:flex-row max-w-full px-10 justify-evenly  mx-auto items-center overflow-hidden z-0"
     >
       <h3 className="absolute top-24 uppercase pl-[20px] tracking-[20px] text-gray-500 text-2xl">
-        Conact
+        Contact
       </h3>
 
       <div className="flex flex-col space-y-10">
@@ -57,7 +57,7 @@ function Contact({}: Props) {
           </div>
         </div>
 
-        <form
+        {/* <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
@@ -99,7 +99,7 @@ function Contact({}: Props) {
             {" "}
             Submit
           </button>
-        </form>
+        </form> */}
       </div>
     </motion.div>
   );
