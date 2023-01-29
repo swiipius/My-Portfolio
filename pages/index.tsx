@@ -17,7 +17,7 @@ import Link from "next/link";
 
 type Props = {
   pageInfo: PageInfo;
-  experiences: Experience[];
+  experience: Experience[];
   skills: Skill[];
   projects: Project[];
   socials: Social[];
@@ -25,7 +25,7 @@ type Props = {
 
 export default function Home({
   pageInfo,
-  experiences,
+  experience,
   skills,
   projects,
   socials,
@@ -36,7 +36,7 @@ export default function Home({
         <title>Pierre's Portfolio</title>
       </Head>
 
-      <Header />
+      <Header socials={socials} />
 
       <section id="hero" className="snap-start">
         <Hero />
@@ -79,7 +79,7 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
-  const experiences: Experience[] = await fetchExperience();
+  const experience: Experience[] = await fetchExperience();
   const skills: Skill[] = await fetchSkills();
   const projects: Project[] = await fetchProject();
   const socials: Social[] = await fetchSocials();
@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
       pageInfo,
-      experiences,
+      experience,
       skills,
       projects,
       socials,
