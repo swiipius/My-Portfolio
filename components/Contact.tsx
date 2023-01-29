@@ -38,7 +38,7 @@ function Contact({}: Props) {
           I have got just what you need.
           <br />{" "}
           <span className="underline decoration-[#8F0500]/50 underline-offset-4">
-            Let's talk
+            Let&apos;s talk
           </span>
         </h4>
 

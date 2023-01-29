@@ -33,7 +33,7 @@ export default function Home({
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/10 scrollbar-thumb-[#8F0500]/80">
       <Head>
-        <title>Pierre's Portfolio</title>
+        <title>Pierre&apos;s Portfolio</title>
       </Head>
 
       <Header socials={socials} />
