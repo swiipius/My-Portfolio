@@ -1,11 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Project } from "@/typings";
+import { urlFor } from "@/sanity";
 
-type Props = {};
+type Props = {
+  projects: Project[];
+};
 
-function Projects({}: Props) {
-  const projects = [1, 2, 3, 4, 5];
+function Projects({ projects }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -18,16 +21,15 @@ function Projects({}: Props) {
       </h3>
 
       <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/10 scrollbar-thumb-[#8F0500]/80">
-        {projects.map((project, i) => (
-          <div className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
-            <motion.img
-              initial={{ y: -300, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-              src="/images/pp.jpeg"
+        {projects?.map((project, i) => (
+          <div
+            key={project._id}
+            className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-10 md:p-20 xl:p-44 h-100 overflow-y-scroll"
+          >
+            <img
+              src={urlFor(projects[i].image).url()}
               alt=""
-              className="max-w-80 max-h-80"
+              className="max-w-40 max-h-40 rounded-2xl"
             />
 
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
@@ -35,18 +37,22 @@ function Projects({}: Props) {
                 <span className="underline decoration-[#8F0500]/50 underline-offset-4">
                   Project {i + 1} of {projects.length} :
                 </span>{" "}
-                Test 1
+                {project.title}
               </h4>
 
-              <p className="text-justify text-lg">
-                Dolore deserunt minim est consequat qui ad cillum anim consequat
-                incididunt. Consectetur ut cillum velit aliquip culpa sunt
-                commodo consectetur anim. Ad duis aute proident quis excepteur
-                in cillum. Fugiat exercitation enim voluptate officia veniam
-                nostrud quis labore aute fugiat reprehenderit sint et. Lorem
-                dolor eiusmod mollit anim ex. Lorem duis sint in aute sint
-                laborum proident nulla ut irure sint anim eiusmod magna.
-                Deserunt aliquip deserunt do tempor ut eu duis.
+              <div className="flex flex-row space-x-5 justify-left items-center">
+                {project?.technologies.map((technology, i) => (
+                  <img
+                    key={technology._id}
+                    src={urlFor(technology.image).url()}
+                    alt=""
+                    className="h-7 w-17 object-contain"
+                  />
+                ))}
+              </div>
+
+              <p className="text-justify text-lg hidden sm:flex">
+                {project.summary}
               </p>
             </div>
           </div>

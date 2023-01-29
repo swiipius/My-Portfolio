@@ -1,10 +1,14 @@
+import { urlFor } from "@/sanity";
+import { PageInfo } from "@/typings";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
+type Props = {
+  pageInfo: PageInfo;
+};
 
-function About({}: Props) {
+function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -21,7 +25,7 @@ function About({}: Props) {
         transition={{ duration: 1 }}
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: true }}
-        src="/images/pp.jpeg"
+        src={urlFor(pageInfo.profilePic).url()}
         alt=""
         className="-mb-20 md:mb-0 flex-shrink-0 rounded-full object-cover w-32 aspect-square md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]"
       />
@@ -35,12 +39,7 @@ function About({}: Props) {
           background
         </h4>
         <p className="text-sm md:text-base text-justify">
-          Quis amet sint qui culpa laborum voluptate duis. Nisi pariatur culpa
-          tempor do. Dolore officia nostrud sit reprehenderit pariatur commodo.
-          Mollit eu dolor incididunt do est aliqua dolor pariatur adipisicing
-          consequat dolore cillum. Magna commodo deserunt dolor amet ut fugiat
-          cupidatat eu est non esse in aute. Non elit irure est sunt magna ut
-          deserunt aliquip nulla proident. Culpa aliqua id Lorem qui est culpa.
+          {pageInfo.backgroundInfo}
         </p>
       </div>
     </motion.div>

@@ -14,6 +14,7 @@ import { fetchSocials } from "@/utils/fetchSocials";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { BiUpArrow } from "react-icons/bi";
 
 type Props = {
   pageInfo: PageInfo;
@@ -39,37 +40,33 @@ export default function Home({
       <Header socials={socials} />
 
       <section id="hero" className="snap-start">
-        <Hero />
+        <Hero pageInfo={pageInfo} />
       </section>
 
       <section id="about" className="snap-center">
-        <About />
+        <About pageInfo={pageInfo} />
       </section>
 
       <section id="experience" className="snap-center">
-        <WorkExperience />
+        <WorkExperience experiences={experience} />
       </section>
 
       <section id="skills" className="snap-start">
-        <Skills />
+        <Skills skills={skills} />
       </section>
 
       <section id="projects" className="snap-start">
-        <Projects />
+        <Projects projects={projects} />
       </section>
 
       <section id="contact" className="snap-start">
-        <Contact />
+        <Contact pageInfo={pageInfo} />
       </section>
 
       <Link href="#hero">
         <footer className="sticky bottom-5 w-full cursor-pointer">
           <div className="flex  items-center justify-end px-10">
-            <img
-              className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0"
-              src="/images/pp.jpeg"
-              alt=""
-            />
+            <BiUpArrow />
           </div>
         </footer>
       </Link>
@@ -96,6 +93,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every x seconds
-    revalidate: 3600, // In seconds
+    revalidate: 10, // In seconds
   };
 };

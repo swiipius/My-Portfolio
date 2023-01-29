@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { getPageStaticInfo } from "next/dist/build/analysis/get-page-static-info";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { PageInfo } from "@/typings";
 
 type Inputs = {
   nom: string;
@@ -13,9 +14,11 @@ type Inputs = {
   message: string;
 };
 
-type Props = {};
+type Props = {
+  pageInfo: PageInfo;
+};
 
-function Contact({}: Props) {
+function Contact({ pageInfo }: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
     console.log(`${formData.nom}`);
@@ -45,15 +48,15 @@ function Contact({}: Props) {
         <div className="space-y-10">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-[#8F0500] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">0670050334</p>
+            <p className="text-2xl">{pageInfo.phoneNumber}</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <EnvelopeIcon className="text-[#8F0500] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">bonsoir@gmail.com</p>
+            <p className="text-2xl">{pageInfo.email}</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="text-[#8F0500] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">Pas ici</p>
+            <p className="text-2xl">{pageInfo.address}</p>
           </div>
         </div>
 
