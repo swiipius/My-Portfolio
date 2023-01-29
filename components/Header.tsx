@@ -18,21 +18,14 @@ function Header({ socials }: Props) {
         className="flex flex-row items-center"
       >
         {/* Social icons */}
-        <SocialIcon
-          url="https://github.com/swiipius"
-          fgColor="grey"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://www.linkedin.com/in/pierresim"
-          fgColor="grey"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://www.figma.com/@swiipius"
-          fgColor="grey"
-          bgColor="transparent"
-        />
+        {socials.map((social) => (
+          <SocialIcon
+            key={social._id}
+            url={social.url}
+            fgColor="grey"
+            bgColor="transparent"
+          />
+        ))}
       </motion.div>
 
       <Link href="#contact">
